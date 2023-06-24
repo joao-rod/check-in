@@ -4,23 +4,24 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <style>
-        input {
-            border-color: #b6b2b2 !important;
-            border-radius: 5px !important;
-            outline: 0 !important;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 {% endblock %}
 
 {% block body %}
     <div class="flex justify-center">
-        <div class="space-y-6 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div class="space-x-6">
+            <div>
+                <h2 class="text-2xl font-bold leading-none tracking-tight text-white md:text-4xl lg:text-5xl dark:text-white">Sistema de marcação de <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">E/S</mark></h2>
+            </div>
+            <img src="{{ asset('images/timeLogin.png') }}" alt="Capa">
+        </div>
+
+        <div class="form space-y-6 w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             <form action="{{ path('app_login') }}" method="post" class="space-y-6">
                 <h5 class="text-xl font-medium text-gray-900 dark:text-white">Faça login</h5>
 
                 {% if error %}
-                    <div class="w-full text-white bg-red-400 m-b-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5">
+                    <div class="alert-error text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                         {{ error.messageKey|trans(error.messageData, 'security') }} 
                         <i class="fa-solid fa-circle-exclamation"></i>
                     </div>
@@ -35,10 +36,10 @@
 
                 <div>
                     <label for="password" class="block">Senha</label>
-                    <input type="password" class="w-full" id="password" name="_password">
+                    <input type="password" class="w-full" id="password" name="_password" required>
                 </div>
                 
-                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <button type="submit" id="btn-submit" class="w-full text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                     Fazer login
                 </button>
             </form>
@@ -48,4 +49,19 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('#username').focusout(function() {
+                $('#username').val() == '' ? $('#username').removeClass('input-not-empty').addClass('input-empty') : $('#username').removeClass('input-empty').addClass('input-not-empty');
+            })
+
+            $('#password').focusout(function() {
+                $('#password').val() == '' ? $('#password').removeClass('input-not-empty').addClass('input-empty') : $('#password').removeClass('input-empty').addClass('input-not-empty');
+            })
+        })
+    </script>
 {% endblock %}
