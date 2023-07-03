@@ -14,6 +14,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
             <script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
             <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
         {% endblock %}
     </head>
 
@@ -43,6 +44,13 @@
 
                                     <ul class="py-2" aria-labelledby="user-menu-button">
                                         <li>
+                                            <a href="{{ path('app_preferences') }}"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                Preferências
+                                            </a>
+                                        </li>
+
+                                        <li>
                                             <a href="{{ path('app_logout') }}"
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                                                 Sair
@@ -69,7 +77,7 @@
                                 <ul
                                     class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-100 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-100 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                                     <li>
-                                        <a href="#"
+                                        <a href="{{ path('app_check_in') }}"
                                             class="block py-2 pl-3 pr-4 text-gray-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                                             aria-current="page"><i class="fa-solid fa-house"></i> Home
                                         </a>
@@ -95,7 +103,7 @@
             </header>
         {% endif %}
 
-        <main class="w-full max-w-screen-xl mb-4">
+        <main class="w-full">
             {% block body %}{% endblock %}
         </main>
 
